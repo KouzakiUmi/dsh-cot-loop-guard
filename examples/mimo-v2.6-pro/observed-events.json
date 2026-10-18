@@ -1,0 +1,75 @@
+{
+  "caseId": "mimo-v2.6-pro-visible-repetition",
+  "evidenceKind": "curated-historical-durable-events",
+  "model": {
+    "displayName": "MiMo-v2.6-Pro",
+    "recordedModelId": "mimo-v2.6-pro"
+  },
+  "selection": "Selected events from one turn, not a contiguous or replayable session export.",
+  "events": [
+    {
+      "label": "A",
+      "eventType": "assistant/message",
+      "interrupted": true,
+      "failure": {
+        "kind": "error",
+        "code": "REASONING_LOOP",
+        "message": "Reasoning output was interrupted after sustained repetition of nearly identical reasoning sentences."
+      },
+      "acceptedReasoningCodeUnits": 13328,
+      "reasoningExcerpt": "让me执行 2 个 edit。\n\n好。\n\n我直接调用 edit 工具。\n\n执行。\n\n好。\n\n（果断，直接调用。）\n\n让me执行 edit 修正测试。\n\n好。\n\n我直接调用 edit。\n\n执行 2 个 edit。\n\n好。\n\n果断，不循环。\n\n让me执行 edit 修正测试 1 和测试 2。\n\n好。\n\n我直接调用 edit 工具。\n",
+      "excerptKind": "verbatim contiguous suffix; earlier content omitted",
+      "excerptCodeUnits": 165,
+      "excerptSha256": "11e14810b6d223305194b3e7de0f9a268bf87a790aed39a831120a648e2e8a9a",
+      "toolCallBlocks": 0
+    },
+    {
+      "label": "B",
+      "eventType": "user/message",
+      "source": {
+        "kind": "reasoning-loop-recovery"
+      },
+      "text": "The preceding reasoning was interrupted after sustained repetition of nearly identical sentences. Its retained prefix is available above exactly as written; the unconfirmed repetitive tail was discarded. Continue the unfinished task using a different approach. Do not repeat that reasoning. Use the actual tool protocol when an action is needed.",
+      "sourceFieldsPresent": [
+        "kind"
+      ]
+    },
+    {
+      "label": "C",
+      "eventType": "assistant/message",
+      "reasoningExcerpt": "停止循环。[具体测试修改细节已省略]立即调用。",
+      "excerptKind": "middle detail explicitly omitted; original opening and closing retained",
+      "toolCallBlocks": 2
+    },
+    {
+      "label": "D",
+      "observation": "Two subsequent tool/call events each had a tool/result in the same step.",
+      "toolCallEvents": 2,
+      "toolResultEvents": 2,
+      "toolResultReportedErrors": [
+        false,
+        false
+      ],
+      "toolExecutionSuccess": "both results report isError=false; independent task correctness not asserted; arguments, outputs and identifiers omitted"
+    },
+    {
+      "label": "E",
+      "eventType": "turn/end",
+      "reasonKind": "completed",
+      "note": "Later steps omitted. This is recorded turn completion, not an independent judgment of task correctness."
+    }
+  ],
+  "earlierSeparateTurn": {
+    "interruptedAssistantMessages": 4,
+    "recoveryMessages": 3,
+    "terminalReasonKind": "error",
+    "terminalFailureCode": "REASONING_LOOP",
+    "note": "Observed finite recovery sequence; the historical source does not record a numeric recovery limit, so no limit field is invented."
+  },
+  "limitations": [
+    "The historical guard build and exact configuration are not established by this excerpt.",
+    "Accepted prefix length is not total provider-generated reasoning, held-tail size, loop-detection latency, or a memory-bound measurement.",
+    "Transient suspected/released/barrier stages are not reconstructed from durable events.",
+    "Only a curated, privacy-minimized excerpt is public; the full trace is not independently replayable from this repository."
+  ]
+}

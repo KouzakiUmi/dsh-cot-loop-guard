@@ -15,6 +15,7 @@ This repository documents an implementation developed in DeepSeek Harness (DSH).
 - [Reference source index](reference/README.md).
 - [Provenance and SHA-256](provenance.json).
 - [Attribution](NOTICE.md) and [MIT license](LICENSE).
+- [MiMo-v2.6-Pro observed interception case](examples/mimo-v2.6-pro/README.md): an authorized, privacy-minimized historical excerpt, recovery, subsequent tool calls, and a separate terminal failure boundary.
 
 ## Two different authorities
 
@@ -54,6 +55,7 @@ The default recovery allowance is **one per Agent/turn/policy instance**. Three 
 - 23 committed source snapshots with original paths and byte fingerprints, including representative tests.
 - Chinese and English explanations of the design and its safety boundaries.
 - Provenance, attribution, and a scoped validation record.
+- One authorized, curated [MiMo-v2.6-Pro historical case](examples/mimo-v2.6-pro/README.md), not a complete session recording.
 
 There is no installer, binary patch, installation/upgrade script, provider secret, user Profile, private session recording, or cross-version compatibility promise. The reference files depend on the original project context and are not a standalone build.
 

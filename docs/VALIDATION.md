@@ -53,10 +53,18 @@ Publication checks compare each reference file with its committed source bytes, 
 - **没有在此次发布流程中重新调用真实模型**，不声称某家供应商所有路由都支持可编辑重放。
 - **没有在此次发布流程中做真实浏览器交互验收**；节点/组件测试不等同于人眼看到每个中间阶段。
 - **没有重新执行原项目全量 lint、文档生成、全量类型检查、全部 native 构建或完整覆盖率统计**。相关测试通过不等于整个 Core 的所有门禁通过。
-- **没有给出召回率、误报率或固定截断时延**，没有发布真实用户会话语料。
+- **没有给出召回率、误报率或固定截断时延**，没有发布完整私密会话或模型评测语料集；新增的[授权脱敏个案](../examples/mimo-v2.6-pro/README.md)只是有限的观察摘录。
 - **不是跨版本应用保证**，也不是对目前所有 DSH/模型组合的认证。
 
 No live-model, browser-interaction, whole-Core release-gate, coverage, accuracy, or cross-version compatibility result is implied by the 275-test count.
+
+## 后续补充：真实历史案例 / Additional historical observation
+
+[MiMo-v2.6-Pro 案例](../examples/mimo-v2.6-pro/README.md)只读核对了一段真实的中断结算、恢复提示、后续工具调用以及 turn 结束记录，并公开 165 个 UTF-16 码元的原文连续短摘录。另一独立 turn 的数量摘要保留了恢复后仍最终失败的事实。
+
+这不是重新调用模型，不是用当前检测器离线重放后冒充原始实测，也不改变上面的 275 项测试统计。案例隐藏原会话身份和项目细节；历史 source 缺失的 ordinal/limit 没有补造。实时 stage、准确历史构建/配置与检测延迟均没有从持久数据推断。
+
+The added case is a curated historical observation, not a new live-model run, accuracy benchmark, or replayable Session export. It does not change the 275-test count. It preserves both an observed recovery and a separate eventual failure without exposing the private session.
 
 ## 已知限制 / Known limitations
 
