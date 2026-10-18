@@ -8,6 +8,18 @@ This repository documents an implementation developed in DeepSeek Harness (DSH).
 
 “CoT” here means observable reasoning supplied by an adapter. It does not mean access to hidden model state, a reasoning-correctness classifier, or detection of every semantic loop.
 
+## Purpose: intervene early and preserve session usability
+
+The objective is not to make a model incapable of looping. It is to limit the damage while retaining room to continue or hand off:
+
+1. **Proactive interception, not indefinite reliance on self-correction.** On editable output routes, observe evidence, buffer only when suspicious, and interrupt a confirmed loop. Continued output is not necessarily continued task progress.
+2. **Reduce CoT contamination, not promise its complete prevention.** Here this means repetitive reasoning accumulating in history and replay context, crowding out task information and remaining context capacity. Evidence takes time to accumulate, early repetition can pass, and already committed history is not retroactively purged.
+3. **Keep the session as usable as possible, including an earlier handoff when needed.** Try a bounded continuation first; otherwise stop explicitly while retaining accepted content, existing tool records, and the interruption reason. This gives the user or a higher-level workflow a better basis for switching models, curating context, or handing off instead of spending the remaining token/context budget on a loop.
+
+**A timely, understandable stop can be a useful outcome even when automatic recovery fails.** The guard does not guarantee task correctness, automatically produce handoff summaries, switch models, or ensure provider billing stops immediately after cancellation. It aims to reduce further waste, not recover tokens already spent.
+
+See [the detailed purpose and trade-offs](docs/DESIGN.en.md#2-goals-and-invariants).
+
 ## Reading map
 
 - [Detailed design](docs/DESIGN.en.md): algorithms, formulas, state transitions, capabilities, cancellation, tools, recovery, and live presentation.

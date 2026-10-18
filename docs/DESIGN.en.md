@@ -15,6 +15,43 @@ The system observes adapter-supplied reasoning, not hidden model state. It does 
 
 ## 2. Goals and invariants
 
+### Core purpose: limit damage and preserve room to continue or hand off
+
+The product goal is not merely to recognize repetition or promise that a model will never lose progress. It is to turn an escalating loop into a **bounded, observable interruption that still leaves options**.
+
+#### Purpose 1: intercept proactively rather than wait for exhaustion
+
+Repeated promises to act or stop looping are not evidence that recovery is imminent. Depending only on model self-correction, provider output limits, or continuous human attention can allow unproductive generation to continue consuming resources.
+
+The guard intervenes before committing new output: normal work passes, suspicious output is withheld, and confirmation ends the current call. This is a trade-off between false interception and the cost of letting a loop grow, not an immediate ban on repeated words. Missed loops and routes that cannot be safely edited remain possible; proactive does not mean comprehensive.
+
+#### Purpose 2: reduce CoT contamination without promising to eliminate it
+
+Here contamination means an engineering problem in accumulated context: repeated self-instructions, unproductive plans, and recurring explanations enter history and replay, crowding out task requirements, constraints, completed work, and remaining context capacity. It is not a measurement of hidden cognition or proof that any particular text causes another loop.
+
+Pre-commit withholding keeps part of the suspicious tail out of durable history. Confirmation discards an uncommitted suffix, while exact-copy suppression removes only proven copies. This limits further accumulation at its source; it does not rewrite the entire conversation into a clean version afterward.
+
+Complete prevention is unrealistic. Detection needs evidence, some early repetition has already passed, and unproven output must still be released on recovery or barriers. Published prefixes are not retroactively purged. A safe prefix is **safe at protocol and commit boundaries**, not necessarily free of redundancy, mistaken reasoning, or earlier looping. Semantic curation, summaries, compaction, and rebuilding task context are separate work.
+
+#### Purpose 3: keep the session usable, including an earlier handoff
+
+The preferred outcome is resumed useful action after a finite continuation prompt. A less ideal but valuable outcome is an explicit stop when recovery fails, retaining accepted content, existing tool records, the reason, and a reviewable sequence. A user or higher-level workflow can then decide whether to continue, change models, take over, or curate a handoff while context capacity and resources remain—instead of discovering the problem after the session is practically unusable.
+
+Usability is therefore not synonymous with the original model continuing to generate. It includes understanding what happened and retaining enough inspectable state to make the next decision. Bounded recovery, prefix retention, truthful failures, and immediate status each support that objective.
+
+This is **not an automatic handoff feature**. The reference does not automatically summarize the task, select a replacement model, migrate a session, or validate tool effects. A badly contaminated conversation can still require manual curation and may not be salvageable.
+
+#### Evaluate the objectives separately
+
+| Objective | Useful observation | Not established |
+|---|---|---|
+| Proactive damage limitation | A confirmed loop triggers a call-local stop and finite recovery converges to action or an explicit end | Detection of all loops or fixed stopping latency |
+| Less contamination | An uncommitted looping tail is not delivered; proven copies do not return at block-end | Completely clean history or semantic sanitization |
+| Usability and handoff space | Retained records and a clear reason let the user choose the next step sooner | An automatic handoff or guaranteed task continuation |
+| Less wasted generation | No unbounded policy recovery; an attempt to limit further unproductive output | A fixed token-saving percentage, refund of spent tokens, or immediate provider billing cancellation |
+
+A terminal error does not by itself make the guard useless. The [observed case](../examples/mimo-v2.6-pro/README.md) records both recovery followed by real tool calls and a separate eventual failure boundary. Damage limitation and clarity of the remaining state should be evaluated separately from final task completion.
+
 Goals: govern output before delivery and durable commit; avoid buffering normal output first; bound observation, withholding, interruption, and recovery; affect one model call rather than cancelling the entire user task; make transitions immediately visible.
 
 Non-goals: universal semantic-loop detection, zero false positives, a signature-stripping fallback, or an installation mechanism for other DSH versions.
