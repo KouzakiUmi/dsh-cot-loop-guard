@@ -2,6 +2,8 @@
 
 [Home](../README.en.md) | [中文](DESIGN.zh-CN.md)
 
+For placement, ownership and integration trade-offs, see [Why the DSH output-acceptance boundary?](LAYERING.en.md). This document details the algorithms and state machines.
+
 ## 1. The problem and the two authorities
 
 An assistant can repeatedly say “read the file”, “do it now”, and “stop looping” without emitting a real tool call. Interjections, order changes, and counters can prevent any complete passage from recurring exactly. Conversely, legitimate analysis and code often repeat terms or scaffolding.

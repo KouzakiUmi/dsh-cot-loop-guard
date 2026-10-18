@@ -23,6 +23,7 @@ See [the detailed purpose and trade-offs](docs/DESIGN.en.md#2-goals-and-invarian
 ## Reading map
 
 - [Detailed design](docs/DESIGN.en.md): algorithms, formulas, state transitions, capabilities, cancellation, tools, recovery, and live presentation.
+- [Why this DSH layer?](docs/LAYERING.en.md): alternatives, plugin/Core ownership, integration difficulty, and practical trade-offs.
 - [Validation and limitations](docs/VALIDATION.md): what was actually tested and what was not.
 - [Reference source index](reference/README.md).
 - [Provenance and SHA-256](provenance.json).
