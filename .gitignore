@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.artifacts/
+.env
+.env.*
+*.log
+*.exe
+*.asar
+*.zstd
+.DS_Store
+Thumbs.db

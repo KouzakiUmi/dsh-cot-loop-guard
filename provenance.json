@@ -1,0 +1,156 @@
+{
+  "kind": "technical-reference-snapshot",
+  "notInstallable": true,
+  "sourceRepository": "https://github.com/KouzakiUmi/deepseek-harness",
+  "upstreamRepository": "https://github.com/deepseek-ai/deepseek-harness",
+  "sourceCommit": "557c9d8f98b2ff4de429257e38db24b713242e6f",
+  "sourceVersion": "0.2.1-rc.2",
+  "featureOriginCommit": "7443b297a2cfc8b7438b02571368e3fd28dae9db",
+  "performanceMaintenanceCommit": "26a31687da4edfdc2061131a102f4ec5354f874c",
+  "license": "MIT",
+  "notes": [
+    "Source commit identifies the inspected local Git snapshot; no remote availability or release status is implied.",
+    "Files are byte-exact committed source snapshots, not a standalone package, patch kit, or supported installation path.",
+    "Uncommitted source-workspace changes, user configuration and session records are excluded."
+  ],
+  "files": [
+    {
+      "path": "reference/packages/guard/repeat-tool-reminder/src/index.ts",
+      "sourcePath": "packages/guard/repeat-tool-reminder/src/index.ts",
+      "bytes": 11100,
+      "sha256": "7e4d65fae89132ee6331c3076e4fbfdcd0e86064e2d645b6545e8e36423c4486"
+    },
+    {
+      "path": "reference/packages/guard/repeat-tool-reminder/src/reasoning-policy.ts",
+      "sourcePath": "packages/guard/repeat-tool-reminder/src/reasoning-policy.ts",
+      "bytes": 12731,
+      "sha256": "9bcf8d1b76e70a911e7d55e7d93de6e2bcf74cd2e034a288e86a4022e49dfbf2"
+    },
+    {
+      "path": "reference/packages/guard/repeat-tool-reminder/src/reasoning-watch.ts",
+      "sourcePath": "packages/guard/repeat-tool-reminder/src/reasoning-watch.ts",
+      "bytes": 10733,
+      "sha256": "d1bfabceb411352b27d6e6d0f6c5975970b3c59fb5937d9a952e81a64e98962b"
+    },
+    {
+      "path": "reference/packages/guard/repeat-tool-reminder/src/visible-stall.ts",
+      "sourcePath": "packages/guard/repeat-tool-reminder/src/visible-stall.ts",
+      "bytes": 15579,
+      "sha256": "770d6ac62c58da3f4dcbde2935a9468e3ddbd1d26fa3040b06e6713b44c89b39"
+    },
+    {
+      "path": "reference/packages/guard/repeat-tool-reminder/src/sentence-units.ts",
+      "sourcePath": "packages/guard/repeat-tool-reminder/src/sentence-units.ts",
+      "bytes": 2498,
+      "sha256": "deb067697fc5dee1ce6f98e8718d9e828033136d0d363cf116ffb4e6678c9d50"
+    },
+    {
+      "path": "reference/packages/guard/repeat-tool-reminder/tests/reasoning-fixtures.ts",
+      "sourcePath": "packages/guard/repeat-tool-reminder/tests/reasoning-fixtures.ts",
+      "bytes": 3467,
+      "sha256": "c32ddde30d4b99e73f0e9a0e26cde284dc221a8bc76ce7a527faeafbf8bd5928"
+    },
+    {
+      "path": "reference/packages/guard/repeat-tool-reminder/tests/reasoning-policy.spec.ts",
+      "sourcePath": "packages/guard/repeat-tool-reminder/tests/reasoning-policy.spec.ts",
+      "bytes": 32845,
+      "sha256": "e49d6f929f2cda1b1be971c5a4b46dbc0528cff14b1347456170bdd91ba1cc94"
+    },
+    {
+      "path": "reference/packages/guard/repeat-tool-reminder/tests/reasoning-watch.spec.ts",
+      "sourcePath": "packages/guard/repeat-tool-reminder/tests/reasoning-watch.spec.ts",
+      "bytes": 7859,
+      "sha256": "e014f2e3999a085b81fd5d4923fbd2be5104515d0ec59b2a29b887525c1d63ef"
+    },
+    {
+      "path": "reference/packages/guard/repeat-tool-reminder/tests/visible-stall.spec.ts",
+      "sourcePath": "packages/guard/repeat-tool-reminder/tests/visible-stall.spec.ts",
+      "bytes": 16523,
+      "sha256": "d7959891db3affbeab80edf15ba4537e619fdc4cb17f0e27aca505a72e88e5c2"
+    },
+    {
+      "path": "reference/packages/guard/repeat-tool-reminder/tests/sentence-units.spec.ts",
+      "sourcePath": "packages/guard/repeat-tool-reminder/tests/sentence-units.spec.ts",
+      "bytes": 1579,
+      "sha256": "553d798f8c91a19d03cf2cd8b47850fa32181004dba9630b4b622ca22918c4e2"
+    },
+    {
+      "path": "reference/packages/core/agent-loop/src/agent.ts",
+      "sourcePath": "packages/core/agent-loop/src/agent.ts",
+      "bytes": 32004,
+      "sha256": "31da5854918183cb36e780261dda4e99289660c1f4a072b02e3183c0b7b58a23"
+    },
+    {
+      "path": "reference/packages/core/agent-loop/src/assistant-stream.ts",
+      "sourcePath": "packages/core/agent-loop/src/assistant-stream.ts",
+      "bytes": 5514,
+      "sha256": "145cabacfa3736b831786e26c02b62322f1623704c54ab1882a4aabd4c00d925"
+    },
+    {
+      "path": "reference/packages/core/agent/src/runtime-types.ts",
+      "sourcePath": "packages/core/agent/src/runtime-types.ts",
+      "bytes": 22604,
+      "sha256": "c4b680b7506b8cb22cc86044f243571ca89a1b678fab7bd83e35dcdc121ff89f"
+    },
+    {
+      "path": "reference/packages/api/session-controller/src/assistant-stream.ts",
+      "sourcePath": "packages/api/session-controller/src/assistant-stream.ts",
+      "bytes": 3903,
+      "sha256": "19f043c8d60c4f711a1fddfd57cbadb7e0bff778be7867879b70f17a7e4c772b"
+    },
+    {
+      "path": "reference/packages/api/session-controller/src/client/sessions/assistant-stream.ts",
+      "sourcePath": "packages/api/session-controller/src/client/sessions/assistant-stream.ts",
+      "bytes": 10877,
+      "sha256": "01c6bf8009e17eb46c84e783d3d28569732d8a9ae011e5d36ba7a55296868f72"
+    },
+    {
+      "path": "reference/packages/api/session-controller/src/client/contract/events.ts",
+      "sourcePath": "packages/api/session-controller/src/client/contract/events.ts",
+      "bytes": 7867,
+      "sha256": "9b65ebb6a841e971bc3c66a035f29e3ce6e8c3012a99558562b4e4cf50f5db23"
+    },
+    {
+      "path": "reference/packages/client/ui-chat/src/client/conversation-nodes/assistant.ts",
+      "sourcePath": "packages/client/ui-chat/src/client/conversation-nodes/assistant.ts",
+      "bytes": 20962,
+      "sha256": "c191ddb67ccb78e8e2e505a353fc762650c991f6d76154c031f0d5ea3cd57c61"
+    },
+    {
+      "path": "reference/packages/client/ui-chat/src/client/chat/RecoveryNotice.tsx",
+      "sourcePath": "packages/client/ui-chat/src/client/chat/RecoveryNotice.tsx",
+      "bytes": 3867,
+      "sha256": "fcb8837bd4b2da7e99becb78ef1497f04a02c1854d75a3a76bcf0040b6b5f6c2"
+    },
+    {
+      "path": "reference/packages/client/ui-chat/src/client/chat/RecoveryNotice.module.css",
+      "sourcePath": "packages/client/ui-chat/src/client/chat/RecoveryNotice.module.css",
+      "bytes": 1239,
+      "sha256": "7091ac66f71c465840764c94973dffadb9418f2ad9549315088629709c0e4ab0"
+    },
+    {
+      "path": "reference/packages/client/ui-chat/src/client/chat/AssistantNodeView.tsx",
+      "sourcePath": "packages/client/ui-chat/src/client/chat/AssistantNodeView.tsx",
+      "bytes": 3471,
+      "sha256": "0e7ef010ac3909deab0ac372b2a234ea0719bc44caa059e3f6b4c8fdcc3da5de"
+    },
+    {
+      "path": "reference/packages/client/ui-chat/src/client/contract/chat-nodes.ts",
+      "sourcePath": "packages/client/ui-chat/src/client/contract/chat-nodes.ts",
+      "bytes": 6878,
+      "sha256": "97f6613a2471b10c096dfe0dc45e3ac0dc8c443cd839985acef462d4b2594d96"
+    },
+    {
+      "path": "reference/packages/llm/llm-pi-ai/src/plain-reasoning.ts",
+      "sourcePath": "packages/llm/llm-pi-ai/src/plain-reasoning.ts",
+      "bytes": 2826,
+      "sha256": "a91e44ed8ee511a67c32ca4efbbbf3ee46354ff32990b002c8f0513edf5f138b"
+    },
+    {
+      "path": "reference/packages/llm/llm/src/assembler.ts",
+      "sourcePath": "packages/llm/llm/src/assembler.ts",
+      "bytes": 8664,
+      "sha256": "24fc1569628d7a7e79cbd6802c87e603bc7ad6158cb57ddbc957a20708a87c71"
+    }
+  ]
+}
