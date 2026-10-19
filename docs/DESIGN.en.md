@@ -4,6 +4,8 @@
 
 For placement, ownership and integration trade-offs, see [Why the DSH output-acceptance boundary?](LAYERING.en.md). This document details the algorithms and state machines.
 
+This document describes the pinned historical Core snapshot. The separate [prototypes](../prototype/README.en.md) explore sentence boundaries, user-authorized recovery and per-attempt replay; they are not integrated Core changes.
+
 ## 1. The problem and the two authorities
 
 An assistant can repeatedly say “read the file”, “do it now”, and “stop looping” without emitting a real tool call. Interjections, order changes, and counters can prevent any complete passage from recurring exactly. Conversely, legitimate analysis and code often repeat terms or scaffolding.
@@ -87,6 +89,8 @@ The stall must see original characters, not merely the text left after copy supp
 Observation positions advance by characters rather than provider deltas. Splitting input into tiny deltas or one large delta should preserve decisions. Multiple transitions inside one delta are retained in occurrence order.
 
 See the [source index](../reference/README.md). Original paths are preserved for navigation, not standalone compilation.
+
+`agent/output-policy` includes Core changes made for this reference, not an interface assumed present in every unmodified DSH. The pinned policy actively governs only its first selected reasoning index; other indexes or content after that block closes pass through. It is not coverage of every reasoning block in one call.
 
 ## 4. Exact-copy suppression
 
@@ -242,11 +246,11 @@ An empty prefix may settle as `assistant/attempt`; a usable prefix settles as `a
 
 ### Finite recovery
 
-A WeakMap isolates counters by Agent and turn. Default `maxRecoveries` is 1. Setting 3 allows three extra calls beyond the original call; zero allows no continuation.
+A WeakMap inside one **installed policy scope** isolates counters by Agent and turn. Creating another per-call `ReasoningOutputPolicy` does not replenish that map; reinstalling the policy creates a new scope. Default `maxRecoveries` is 1. Setting 3 allows three extra calls beyond the original call; zero disables automatic continuation, not an ordinary initial call or tool execution.
 
 Exhaustion is a real failure and must not be laundered into ordinary `always` retry. Native child agents use the same bounded mechanism in their own Agent/turn; recovery does not require cancelling/recreating the whole parent task.
 
-These counters live in the policy instance, not a durable global quota. Restarting the process or replacing the plugin does not preserve that same counter map.
+These counters live in the installed policy scope, not a durable global quota. Restarting the process or replacing the plugin does not preserve that same counter map.
 
 ### Recovery is intentionally model-visible
 
@@ -263,6 +267,14 @@ User/parent cancellation, policy disposal, iterator teardown failure, or rejecte
 ## 9. Tools and settlement budget
 
 A complete protocol tool block calls `protectCommit()`. Withholding/release may continue, but repetition no longer arbitrarily cancels that call. Protection neither dispatches tools nor makes partial JSON executable.
+
+Content acceptance and resource accounting are separate policies:
+
+- A previously made interruption is not undone by a later tool block, and its discarded tail cannot return.
+- **Once protected, buffered text may be released and the local window reset even when evidence reaches the ordinary confirmation threshold.** That is not evidence falling back or a promise that every such character is withheld. Released text still passes through exact-copy suppression; proven copies already suppressed are not resurrected.
+- This trades reduced repetition in history against allowing tool settlement. The budget below bounds further consumption; **it does not prevent every repetitive character from entering history**. Changing release authority would require separate protocol/settlement validation; the historical implementation is unchanged.
+
+See [protected confirmation/release](../reference/packages/guard/repeat-tool-reminder/src/visible-stall.ts#L209-L239) and [detector composition](../reference/packages/guard/repeat-tool-reminder/src/reasoning-policy.ts#L143-L174).
 
 The first complete tool block activates an independent `settlementBudget = 65536`. Each subsequent non-finish event costs `1 + new delta UTF-16 length`; another tool block does not reset the budget.
 

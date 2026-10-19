@@ -159,3 +159,5 @@ Another design that owns these responsibilities can be valid. A duplicate regex 
 This document explains the [pinned reference snapshot](../provenance.json), not extension availability across all official releases. No live-model run, browser acceptance check or full runtime suite was rerun for this documentation update.
 
 The [observed case](../examples/mimo-v2.6-pro/README.md) is limited historical evidence; [validation](VALIDATION.md) describes the tests. Neither substitutes for reviewing another version, adapter or integration layer.
+
+The later [prototypes](../prototype/README.en.md) separately exercise sentence scanning, user authorization and replay boundaries. They add no Host interface, Core integration or installation path and do not transfer those responsibilities to a standalone UI notice.

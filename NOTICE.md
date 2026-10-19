@@ -10,6 +10,10 @@ Maintained source fork identified during inspection: https://github.com/KouzakiU
 
 The source commit in the manifest records the inspected Git object, not a promise that it is an official release or currently reachable from a public branch. The selected files are included in this repository, so reading them does not depend on remote access to that commit.
 
+The new independent experimental code under [prototype](prototype/README.en.md) is provided under the same MIT terms. It is not exported from the pinned Core commit and is not an upstream release, certification, installable plugin or portable patch. The original source snapshot and manifest remain unchanged.
+
+新增原型与历史源码快照分开标识，不把实验测试结果冒充已部署的 Core 改动。
+
 The explanatory documents in this repository are provided under the same MIT terms. This is an independent technical reference. Naming upstream projects, adapters, or providers does not imply endorsement, universal replay compatibility, or a security certification.
 
 本仓库不是可安装 npm 包、补丁应用器或 DSH 发行物。不提供安装、升级、降级或修改他人 DSH 实例的脚本；不承诺任意版本可以直接使用这里的源码。不会随仓库分发个人 Profile、密钥、完整私密会话或宿主二进制。[实测案例](examples/mimo-v2.6-pro/README.md)仅包含用户授权公开的少量脱敏片段及最小事件事实；并不把会话内容全部授权为可自由转载的公开数据集。

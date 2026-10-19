@@ -2,7 +2,24 @@
 
 [中文首页](../README.md) | [English home](../README.en.md)
 
-## 本次实际执行 / Executed for this publication
+## 独立原型验证 / Standalone prototype verification
+
+2026-10-19，在本参考仓库使用 Node **v24.13.0** 的内置测试运行器执行[原型测试](../prototype/README.md#运行独立测试)：**4 个测试文件，104 项通过，0 失败、0 跳过，退出码 0**。
+
+其中 24 项检查历史清单及其 23 份源码的大小/SHA-256，另 80 项检查句子边界、用户授权恢复与记录回放。句子测试还逐个枚举二段分包点并比较逐字符输入。
+
+| 原型范围 | 实际检查 |
+|---|---|
+| SentenceUnits | 中英文边界、句号前视、版本/路径/URL、小片段与整段输入一致、整单位统计、超长单位明确丢弃并报告覆盖缺口 |
+| RecoveryBudget | 0 或 N 次由调用者明确选择、N 不含初始调用、工具边界不补次数、重复/迟到通知不重复授权、取消及清理/结算失败不恢复、建议只作为呈现数据 |
+| Recorded replay | 读取 message/attempt 两种 stream、同坐标多 attempt 分开、紧凑片段顺序、逐 chunk 中途判定、不完整覆盖不伪装为零命中、策略实例不复用 |
+| Historical integrity | 原有来源提交、文件大小及 SHA-256 保持一致 |
+
+These are **104 standalone prototype checks**, including 24 historical-integrity checks, not a new run of the original Core suite. The prototypes are not integrated into Core. Their synthetic fixture policy does not measure production detector accuracy or prove transport/final-block correctness.
+
+原型仅使用 Node 内置模块；24.x 测试、断言、文件 URL 和哈希契约已通过 Context7 核对官方文档，再用本机 24.13.0 实际运行。没有安装依赖、调用模型、执行工具、修改生产状态或重放完整私密会话。
+
+## 历史 Core 验证 / Historical Core verification
 
 2026-10-18，在来源清单指定提交对应的原始 DSH 源码工作区中，使用 Node `v24.13.0` 和 Vitest `v4.1.11` 执行相关测试：
 
@@ -49,7 +66,7 @@ Publication checks compare each reference file with its committed source bytes, 
 
 ## 不代表什么 / What this does not establish
 
-- **没有在本参考仓库独立构建**：摘录依赖原项目 workspace 类型、服务和测试基础设施。
+- **没有将历史 Core 快照独立构建**：摘录依赖原项目 workspace 类型、服务和测试基础设施。新增原型可以独立测试，但不等于构建或运行了历史 Core。
 - **没有在此次发布流程中重新调用真实模型**，不声称某家供应商所有路由都支持可编辑重放。
 - **没有在此次发布流程中做真实浏览器交互验收**；节点/组件测试不等同于人眼看到每个中间阶段。
 - **没有重新执行原项目全量 lint、文档生成、全量类型检查、全部 native 构建或完整覆盖率统计**。相关测试通过不等于整个 Core 的所有门禁通过。
@@ -69,7 +86,7 @@ The added case is a curated historical observation, not a new live-model run, ac
 ## 已知限制 / Known limitations
 
 - 合法重复和本会稍后自愈的重复可能被提前截断；语义相同但缺少足够精确句子/片段复现的循环可能漏过。
-- 无完整句子终止符的流不满足句子证据，可能只能依靠精确周期检测。
+- 无完整句子终止符的流不满足句子证据，可能只能依靠精确周期检测。历史句子规则不把 ASCII 句号当终止符；新的独立原型探索改进，但尚未修订这些历史源码或生产行为。
 - 围栏仅暂停可见停滞分支，精确副本分支仍不理解代码的语义合法性；围栏识别等待完整行。
 - 默认只治理首个选中的 reasoning index，不是最终答案去重器。
 - 8192 是可见停滞窗口的码元上限，不是总内存上限；其他缓冲和匹配数据另有成本。
